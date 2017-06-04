@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace MagicJudgeTraining\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use MagicJudgeTraining\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
