@@ -7,4 +7,4 @@
 
 require('./bootstrap');
 
-require('medium-editor');
+
