@@ -3,6 +3,10 @@
 namespace MagicJudgeTraining\Http\Controllers;
 
 use Illuminate\Http\Request;
+use MagicJudgeTraining\Question;
+use MagicJudgeTraining\Lesson;
+use MagicJudgeTraining\User;
+use Input;
 
 class QuestionController extends Controller
 {
@@ -12,8 +16,9 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $question = Question::all();
+        return view('questions/index', ['list' => $question]);
     }
 
     /**
@@ -23,7 +28,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $question = new Question;
+        $lessons = Lesson::all()->pluck('title', 'id');
+        $users = User::all()->pluck('name', 'id');
+        return view('questions/create',['item' => $question, 'lessons' => $lessons, 'users' => $users]);
     }
 
     /**
@@ -34,7 +42,14 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = new Question;
+        $question->description = Input::get('description');
+        $question->title = Input::get('title');
+        $question->lesson_id = Input::get('lesson_id');
+        $question->user_id = Input::get('user_id');
+        $question->order = Input::get('order');
+        $question->save();
+        return redirect()->action('QuestionController@show', ['id' => $question->id]);
     }
 
     /**
@@ -45,7 +60,8 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        $question = Question::find($id);
+        return view('questions/show', ['item' => $question]);
     }
 
     /**
@@ -56,7 +72,8 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        return view('questions/edit', ['item' => $question]);
     }
 
     /**
@@ -68,7 +85,12 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::findOrFail($id);
+        $question->description = Input::get('description');
+        $question->title = Input::get('title');
+        $question->order = Input::get('order');
+        $question->save();
+        return redirect()->action('QuestionController@show', ['id' => $question->id]);
     }
 
     /**
@@ -79,6 +101,7 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::destroy($id);
+        return redirect()->action('QuestionController@index', []);
     }
 }

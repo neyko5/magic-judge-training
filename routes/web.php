@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('lessons', 'LessonController');
+Route::resource('questions', 'QuestionController');

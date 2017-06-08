@@ -4,6 +4,7 @@ namespace MagicJudgeTraining\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MagicJudgeTraining\Lesson;
+use Input;
 
 class LessonController extends Controller
 {
@@ -25,7 +26,8 @@ class LessonController extends Controller
      */
     public function create()
     {
-        //
+        $lesson = new Lesson;
+        return view('lessons/create',['item' => $lesson]);
     }
 
     /**
@@ -36,7 +38,12 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lesson = new Lesson;
+        $lesson->description = Input::get('description');
+        $lesson->title = Input::get('title');
+        $lesson->order = Input::get('order');
+        $lesson->save();
+        return redirect()->action('LessonController@show', ['id' => $lesson->id]);
     }
 
     /**
@@ -59,7 +66,8 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lesson = Lesson::find($id);
+        return view('lessons/edit', ['item' => $lesson]);
     }
 
     /**
@@ -71,7 +79,12 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        $lesson->description = Input::get('description');
+        $lesson->title = Input::get('title');
+        $lesson->order = Input::get('order');
+        $lesson->save();
+        return redirect()->action('LessonController@show', ['id' => $lesson->id]);
     }
 
     /**
@@ -82,6 +95,7 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lesson = Lesson::destroy($id);
+        return redirect()->action('LessonController@index', []);
     }
 }
