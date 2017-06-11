@@ -2,11 +2,9 @@
 
 @section('content')
     <h2>{{$item->title}}</h2>
-    <article>{!! $item->description !!}</article>
-    <ul>
-       @foreach ($item->questions as $question)
-       <li>{{$question->title}}</li>
-       @endforeach
-    </ul>
-
+    <p>{!! $item->description !!}</p>
+    
+    @foreach ($item->questions as $question)
+    <p>{{$question->order}}. {{$question->title}}</p>
+    @endforeach
 @endsection

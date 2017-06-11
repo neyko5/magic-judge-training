@@ -2,5 +2,5 @@
 
 @section('content')
     <h2>{{$item->title}}</h2>
-    <article>{!! $item->description !!}</article>
+    <p>{!! $item->description !!}</p>
 @endsection

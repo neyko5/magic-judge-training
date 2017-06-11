@@ -3,10 +3,19 @@
 @section('content')
     <h2>Edit lesson {{$item->title}}</div>
     {{Form::model($item, ['route' => ['lessons.update', $item->id], 'method' => 'PUT'])}}
-        <input type="text" name="title" value="{{$item->title}}"/>
-        <textarea name="description">{{$item->description}}</textarea>
-        <input type="number" name="order" value="{{$item->order}}"/>
-        <button type="submit">Submit</button>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" placeholder="Title" value="{{$item->title}}" />
+        </div>
+        <div class="form-group">
+            <label for="title">Question content</label>
+            <textarea name="description" placeholder="Lesson content">{{$item->description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="title">Order</label>
+            <input type="text" name="title" class="form-control" placeholder="Order" value="{{$item->order}}">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
     {{Form::close()}}
 @endsection
 

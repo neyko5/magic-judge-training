@@ -2,19 +2,22 @@
 
 @section('content')
     {{link_to_route('questions.create', "Create new question")}}
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Questions</td>
+                <th>Title</td>
+                <th>Order</td>
+                <th>Options</td>
             </tr>
         </thead>
         <tbody>
             @foreach ($list as $question)
             <tr>
-                <td>{{link_to_route('lessons.show', $question->title, [$question->id])}}</td>
-                <td>{{link_to_route('lessons.edit', "Edit", [$question->id])}}</td>
+                <td>{{link_to_route('questions.show', $question->title, [$question->id])}}</td>
+                <td>{{$question->order}}</td>
                 <td>
-                    {{Form::model($question, ['route' => ['lessons.destroy', $question->id], 'method' => 'DELETE'])}}
+                    {{link_to_route('questions.edit', "Edit", [$question->id], ["class"=> "btn btn-primary"])}}
+                    {{Form::model($question, ['route' => ['questions.destroy', $question->id], 'method' => 'DELETE'])}}
                     {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                     {{Form::close()}}
                 </td>
