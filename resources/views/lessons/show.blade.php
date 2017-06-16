@@ -9,9 +9,10 @@
         <h4>{{$question->order}}. {{$question->title}}</h4>
         <p>{!! $question->description !!}</p>
         @if(!empty($question->answer))
-        <button class="show-answer">Show answer</button>
-        
-        <div class="well" style="display:none">{!! $question->answer !!}</div>
+        <div class="answer">
+            <button class="show-answer">Show answer</button>
+            <div class="well" style="display:none">{!! $question->answer !!}</div>
+        </div>
     </div>
     @endif
     @endforeach
