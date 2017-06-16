@@ -11,13 +11,27 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li>{{link_to_route('lessons.index', "Lessons")}}</li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lessons <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    @foreach($lessons as $lesson)
+                    <li>{{link_to_route('lessons.show', $lesson->title, [$lesson->id])}}</li>
+                    @endforeach
+                </ul>
+            </li>
             @foreach($pages as $page)
             <li>{{link_to_route('pages.show', $page->title, [$page->id])}}</li>
             @endforeach
             @if(Auth::check())
-            <li>{{link_to_route('questions.index', "Questions")}}</li>
-            <li>{{link_to_route('pages.index', "Pages")}}</li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>{{link_to_route('lessons.index', "Lessons")}}</li>
+                    <li>{{link_to_route('questions.index', "Questions")}}</li>
+                    <li>{{link_to_route('pages.index', "Pages")}}</li>
+                </ul>
+            </li>
             @endif
         </ul>
         <ul class="nav navbar-nav navbar-right">

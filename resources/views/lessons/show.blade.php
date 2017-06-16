@@ -7,9 +7,12 @@
     @foreach ($item->questions as $question)
     <div>
     <h4>{{$question->order}}. {{$question->title}}</h4>
-    <button class="show-answer">Show answer</div>
-    {!! $question->description !!}
+    <p>{!! $question->description !!}</p>
+    @if(!empty($question->answer))
+    <button class="show-answer">Show answer</button>
+    
     <div class="well" style="display:none">{!! $question->answer !!}</div>
     </div>
+    @endif
     @endforeach
 @endsection
