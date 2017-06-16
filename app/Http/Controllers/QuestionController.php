@@ -54,7 +54,7 @@ class QuestionController extends Controller
         $question->user_id = Input::get('user_id');
         $question->order = Input::get('order');
         $question->save();
-        return redirect()->action('QuestionController@show', ['id' => $question->id]);
+        return redirect()->action('QuestionController@index', ['id' => $question->id]);
     }
 
     /**
