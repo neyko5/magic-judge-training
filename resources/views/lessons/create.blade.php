@@ -12,8 +12,8 @@
             <textarea name="description" placeholder="Lesson content" class="form-control auto-height"></textarea>
         </div>
         <div class="form-group">
-            <label for="title">Order</label>
-            <input type="number" name="title" class="form-control" placeholder="Order">
+            <label for="order">Order</label>
+            <input type="number" name="order" class="form-control" placeholder="Order">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     {{Form::close()}}
