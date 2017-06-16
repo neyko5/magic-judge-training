@@ -3,10 +3,10 @@
 namespace MagicJudgeTraining\Http\Controllers;
 
 use Illuminate\Http\Request;
-use MagicJudgeTraining\Lesson;
+use MagicJudgeTraining\Page;
 use Input;
 
-class LessonController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class LessonController extends Controller
      */
     public function index()
     {   
-        $lessons = Lesson::orderBy("order")->get();
-        return view('lessons/index', ['list' => $lessons]);
+        $page = Page::orderBy("order")->get();
+        return view('pages/index', ['list' => $page]);
     }
 
     /**
@@ -26,8 +26,8 @@ class LessonController extends Controller
      */
     public function create()
     {
-        $lesson = new Lesson;
-        return view('lessons/create',['item' => $lesson]);
+        $page = new Page;
+        return view('pages/create',['item' => $page]);
     }
 
     /**
@@ -38,12 +38,12 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        $lesson = new Lesson;
-        $lesson->description = Input::get('description');
-        $lesson->title = Input::get('title');
-        $lesson->order = Input::get('order');
-        $lesson->save();
-        return redirect()->action('LessonController@show', ['id' => $lesson->id]);
+        $page = new Page;
+        $page->description = Input::get('description');
+        $page->title = Input::get('title');
+        $page->order = Input::get('order');
+        $page->save();
+        return redirect()->action('PageController@show', ['id' => $page->id]);
     }
 
     /**
@@ -54,8 +54,14 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        $lesson = Lesson::find($id);
-        return view('lessons/show', ['item' => $lesson]);
+        $page = Page::find($id);
+        return view('pages/show', ['item' => $page]);
+    }
+
+    public function home()
+    {
+        $page = Page::where("title", "Index")->first();
+        return view('index', ['page' => $page]);
     }
 
     /**
@@ -66,8 +72,8 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        $lesson = Lesson::find($id);
-        return view('lessons/edit', ['item' => $lesson]);
+        $page = Page::find($id);
+        return view('pages/edit', ['item' => $page]);
     }
 
     /**
@@ -79,12 +85,12 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $lesson = Lesson::findOrFail($id);
-        $lesson->description = Input::get('description');
-        $lesson->title = Input::get('title');
-        $lesson->order = Input::get('order');
-        $lesson->save();
-        return redirect()->action('LessonController@show', ['id' => $lesson->id]);
+        $page = Page::findOrFail($id);
+        $page->description = Input::get('description');
+        $page->title = Input::get('title');
+        $page->order = Input::get('order');
+        $page->save();
+        return redirect()->action('PageController@show', ['id' => $page->id]);
     }
 
     /**
@@ -95,7 +101,7 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        $lesson = Lesson::destroy($id);
-        return redirect()->action('LessonController@index', []);
+        $page = Page::destroy($id);
+        return redirect()->action('PageController@index', []);
     }
 }

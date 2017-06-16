@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description'); 
+            $table->text('answer'); 
             $table->integer('order');
             $table->timestamps();
             $table->integer('lesson_id');

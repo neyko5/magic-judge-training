@@ -10,6 +10,10 @@ use Input;
 
 class QuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,6 +48,7 @@ class QuestionController extends Controller
     {
         $question = new Question;
         $question->description = Input::get('description');
+        $question->answer = Input::get('answer');
         $question->title = Input::get('title');
         $question->lesson_id = Input::get('lesson_id');
         $question->user_id = Input::get('user_id');
@@ -73,7 +78,9 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find($id);
-        return view('questions/edit', ['item' => $question]);
+        $lessons = Lesson::all()->pluck('title', 'id');
+        $users = User::all()->pluck('name', 'id');
+        return view('questions/edit', ['item' => $question, 'lessons' => $lessons, 'users' => $users]);
     }
 
     /**
@@ -87,10 +94,13 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
         $question->description = Input::get('description');
+        $question->answer = Input::get('answer');
         $question->title = Input::get('title');
+        $question->lesson_id = Input::get('lesson_id');
+        $question->user_id = Input::get('user_id');
         $question->order = Input::get('order');
         $question->save();
-        return redirect()->action('QuestionController@show', ['id' => $question->id]);
+        return redirect()->action('QuestionController@index');
     }
 
     /**

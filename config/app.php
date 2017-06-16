@@ -178,6 +178,7 @@ return [
         // MagicJudgeTraining\Providers\BroadcastServiceProvider::class,
         MagicJudgeTraining\Providers\EventServiceProvider::class,
         MagicJudgeTraining\Providers\RouteServiceProvider::class,
+        MagicJudgeTraining\Providers\ViewComposerServiceProvider::class
 
     ],
 

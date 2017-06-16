@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Edit lesson {{$item->title}}</div>
+    <h2>Edit lesson <b>{{$item->title}}</b></h2>
     {{Form::model($item, ['route' => ['lessons.update', $item->id], 'method' => 'PUT'])}}
         <div class="form-group">
             <label for="title">Title</label>
@@ -9,11 +9,11 @@
         </div>
         <div class="form-group">
             <label for="title">Question content</label>
-            <textarea name="description" placeholder="Lesson content">{{$item->description}}</textarea>
+            <textarea name="description" placeholder="Lesson content" class="form-control auto-height">{{$item->description}}</textarea>
         </div>
         <div class="form-group">
             <label for="title">Order</label>
-            <input type="text" name="title" class="form-control" placeholder="Order" value="{{$item->order}}">
+            <input type="number" name="order" class="form-control" placeholder="Order" value="{{$item->order}}" />
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     {{Form::close()}}

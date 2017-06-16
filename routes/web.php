@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@home');
 Route::resource('lessons', 'LessonController');
 Route::resource('questions', 'QuestionController');
+Route::resource('pages', 'PageController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

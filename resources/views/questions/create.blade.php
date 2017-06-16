@@ -9,11 +9,15 @@
         </div>
         <div class="form-group">
             <label for="title">Question content</label>
-            <textarea name="description" placeholder="Question content"></textarea>
+            <textarea name="description" placeholder="Question content" class="form-control auto-height"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="answer">Proposed answer</label>
+            <textarea name="answer" placeholder="Proposed answer" class="form-control auto-height"></textarea>
         </div>
         <div class="form-group">
             <label for="title">Order inside lesson</label>
-            <input type="text" name="title" class="form-control" placeholder="Order">
+            <input type="text" name="order" class="form-control" placeholder="Order">
         </div>
         <div class="form-group">
             <label for="lesson_id">Lesson</label>

@@ -1,31 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Edit question <b>{{$item->title}}</b></h2>
-    {{Form::model($item, ['route' => ['questions.update', $item->id], 'method' => 'PUT'])}}
+    <h2>Edit page <b>{{$item->title}}</b></h2>
+    {{Form::model($item, ['route' => ['pages.update', $item->id], 'method' => 'PUT'])}}
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" name="title" class="form-control" value="{{$item->title}}" placeholder="Title" />
         </div>
         <div class="form-group">
-            <label for="description">Question content</label>
+            <label for="title">Page content</label>
             <textarea name="description" placeholder="Question content" class="form-control auto-height">{{$item->description}}</textarea>
         </div>
         <div class="form-group">
-            <label for="answer">Proposed answer</label>
-            <textarea name="answer" placeholder="Proposed answer" class="form-control auto-height">{{$item->answer}}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="title">Order inside lesson</label>
+            <label for="title">Order inside menu</label>
             <input type="text" name="order" class="form-control" placeholder="Order" value="{{$item->order}}">
-        </div>
-        <div class="form-group">
-            <label for="lesson_id">Lesson</label>
-            {{ Form::select('lesson_id', $lessons, Input::old('lesson_id'), ["class" => "form-control"]) }}
-        </div>
-        <div class="form-group">
-            <label for="user_id">Question creator</label>
-            {{ Form::select('user_id', $users, Input::old('user_id'), ["class" => "form-control"]) }}
         </div>
         <button type="submit">Submit</button>
     {{Form::close()}}
