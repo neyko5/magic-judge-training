@@ -6,6 +6,7 @@
         <thead>
             <tr>
                 <th>Title</td>
+                <th>Lesson</td>
                 <th>Order</td>
                 <th>Options</td>
             </tr>
@@ -14,6 +15,7 @@
             @foreach ($list as $question)
             <tr>
                 <td>{{link_to_route('questions.show', $question->title, [$question->id])}}</td>
+                <td>{{$question->lesson->title}}</td>
                 <td>{{$question->order}}</td>
                 <td>
                     {{link_to_route('questions.edit', "Edit", [$question->id], ["class"=> "btn btn-primary"])}}

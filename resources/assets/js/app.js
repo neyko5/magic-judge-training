@@ -9,7 +9,7 @@ require('./bootstrap');
 
 $(document).ready(function() {
     $(document).on("click", ".show-answer", function(){
-        $(this).parents("div").find(".well").show();
+        $(this).parents(".answer").find(".well").show();
         $(this).remove();
     })
 })
