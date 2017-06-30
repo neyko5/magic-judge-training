@@ -6,10 +6,21 @@
 @import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "./bootstrap.min.css";
+@import "./animate.css";
+@import "./ionicons.min.css";
+@import "./magnific-popup.css";
+@import "./theme/style.scss";
 @import "node_modules/medium-editor/dist/css/medium-editor";
 @import "node_modules/medium-editor/dist/css/themes/bootstrap";  
 
 .auto-height {
     height: auto;
+}
+form {
+    display: inline-block;
+}
+.logout-form {
+    display: block;
+    margin-bottom: 0px;
 }

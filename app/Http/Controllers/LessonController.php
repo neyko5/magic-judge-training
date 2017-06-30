@@ -27,7 +27,7 @@ class LessonController extends Controller
     public function create()
     {
         $lesson = new Lesson;
-        return view('lessons/create',['item' => $lesson]);
+        return view('lessons/edit',['item' => $lesson]);
     }
 
     /**
@@ -55,7 +55,8 @@ class LessonController extends Controller
     public function show($id)
     {
         $lesson = Lesson::find($id);
-        return view('lessons/show', ['item' => $lesson]);
+        $lessons = Lesson::where('id', '<>', $id)->orderBy('order')->get();
+        return view('lessons/show', ['item' => $lesson, 'lessons' => $lessons]);
     }
 
     /**

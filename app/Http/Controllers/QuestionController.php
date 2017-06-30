@@ -35,7 +35,7 @@ class QuestionController extends Controller
         $question = new Question;
         $lessons = Lesson::all()->pluck('title', 'id');
         $users = User::all()->pluck('name', 'id');
-        return view('questions/create',['item' => $question, 'lessons' => $lessons, 'users' => $users]);
+        return view('questions/edit',['item' => $question, 'lessons' => $lessons, 'users' => $users]);
     }
 
     /**

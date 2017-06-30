@@ -1,61 +1,53 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
+<nav class="navbar navbar-toggleable-sm navbar-light bg-faded yamm">
+    <div class="container">
         <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">Magic Judge Training</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/">Magic Judge Training</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lessons <span class="caret"></span></a>
-                <ul class="dropdown-menu">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav ml-auto">
+            <li class="dropdown nav-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Lessons</a>
+                <ul class="dropdown-menu dropdown-menu-right">
                     @foreach($lessons as $lesson)
-                    <li>{{link_to_route('lessons.show', $lesson->title, [$lesson->id])}}</li>
+                    <li>{{link_to_route('lessons.show', $lesson->title, [$lesson->id], ['class' => 'dropdown-item'])}}</li>
                     @endforeach
                 </ul>
             </li>
             @foreach($pages as $page)
-            <li>{{link_to_route('pages.show', $page->title, [$page->id])}}</li>
+            <li class="nav-item">{{link_to_route('pages.show', $page->title, [$page->id], ['class' => 'nav-link'])}}</li>
             @endforeach
-            @if(Auth::check())
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li>{{link_to_route('lessons.index', "Lessons")}}</li>
-                    <li>{{link_to_route('questions.index', "Questions")}}</li>
-                    <li>{{link_to_route('pages.index', "Pages")}}</li>
-                </ul>
-            </li>
-            @endif
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+        <ul class="nav navbar-nav ml-auto navbar-right">
+            <li class="dropdown nav-item">
                 @if (Auth::check())
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >{{Auth::user()->name}}</a>
                 <ul class="dropdown-menu">
                     <li>
-                        <form role="form" method="POST" action="{{ route('logout') }}">
+                        <form role="form" method="POST" class="logout-form" action="{{ route('logout') }}">
                             {{ csrf_field() }}
-                            <button type="submit">Log out</button>
+                            <button type="submit" class="dropdown-item">Log out</button>
                         </form>
+                    </li>
+                    <li class="dropdown-submenu">
+                        <a href="#" tabindex="-1" class="dropdown-item" data-toggle="dropdown">Admin</a>
+                        <ul class="dropdown-menu">
+                            <li>{{link_to_route('lessons.index', "Lessons", [], ['class' => 'dropdown-item'])}}</li>
+                            <li>{{link_to_route('questions.index', "Questions", [], ['class' => 'dropdown-item'])}}</li>
+                            <li>{{link_to_route('pages.index', "Pages", [], ['class' => 'dropdown-item'])}}</li>
+                        </ul>
                     </li>
                 </ul>
                 @else
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log in <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Log in</a>
                     <div class="dropdown-menu" style="width: 300px; padding: 15px;">
                         <form role="form" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
-
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="control-label">E-Mail Address</label>
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>

@@ -27,7 +27,7 @@ class PageController extends Controller
     public function create()
     {
         $page = new Page;
-        return view('pages/create',['item' => $page]);
+        return view('pages/edit',['item' => $page]);
     }
 
     /**
@@ -55,7 +55,8 @@ class PageController extends Controller
     public function show($id)
     {
         $page = Page::find($id);
-        return view('pages/show', ['item' => $page]);
+        $pages = Page::where('id', '<>', $id)->where('title', '<>', 'Index')->get();
+        return view('pages/show', ['item' => $page, 'pages' => $pages]);
     }
 
     public function home()
