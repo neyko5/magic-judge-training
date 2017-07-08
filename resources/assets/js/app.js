@@ -12,7 +12,7 @@ $(document).ready(function() {
     tinymce.init({
         selector: 'textarea.editor',
         plugins: ['link', 'image', 'lists'],
-        toolbar: 'undo redo | styleselect | bold italic underline | bullist numlist | outdent indent | forecolor backcolor | link image | mtgbutton',
+        toolbar: 'undo redo | styleselect | bold italic underline | bullist numlist | outdent indent | forecolor backcolor | link unlink image | removeformat | mtgbutton',
         menubar: false,
         height: 400,
         content_style: "span.mtgcard { color: red }",
