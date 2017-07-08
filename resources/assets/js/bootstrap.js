@@ -15,8 +15,9 @@ import tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/modern/theme';
 
 // Any plugins you want to use has to be imported
-import 'tinymce/plugins/paste';
 import 'tinymce/plugins/link';
+import 'tinymce/plugins/image';
+import 'tinymce/plugins/lists';
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 

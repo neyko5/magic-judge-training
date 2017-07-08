@@ -26,3 +26,17 @@ form {
     display: block;
     margin-bottom: 0px;
 }
+
+span.mtgcard {
+    position: relative;
+    color: red;
+    .card-tooltip {
+        display: none;
+        position: absolute;
+        bottom: 30px; 
+        left: 0px;
+    }
+    &:hover .card-tooltip {
+        display: block;
+    }
+}
