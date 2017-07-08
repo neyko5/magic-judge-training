@@ -81,7 +81,6 @@ class QuestionController extends Controller
         $question->answer = Input::get('answer');
         $question->title = Input::get('title');
         $question->lesson_id = Input::get('lesson_id');
-        $question->user_id = Input::get('user_id');
         $question->order = Input::get('order');
         $question->save();
         return redirect()->action('QuestionController@index');
