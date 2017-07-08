@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="answer">Proposed answer</label>
-                    <textarea name="answer" placeholder="Proposed answer" class="form-control auto-height">{{$item->answer}}</textarea>
+                    <textarea name="answer" placeholder="Proposed answer" class="form-control auto-height editor">{{$item->answer}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="title">Order inside lesson</label>
