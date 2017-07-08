@@ -14,5 +14,6 @@
         @yield('content')
         <script src="/js/app.js"></script>
         @yield('javascript')
+        @include('partials/analytics')
     </body>
 </html>
