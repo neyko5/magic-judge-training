@@ -5,7 +5,6 @@ namespace MagicJudgeTraining\Http\Controllers;
 use Illuminate\Http\Request;
 use MagicJudgeTraining\Question;
 use MagicJudgeTraining\Lesson;
-use MagicJudgeTraining\User;
 use Input;
 
 class QuestionController extends Controller
@@ -34,8 +33,7 @@ class QuestionController extends Controller
     {
         $question = new Question;
         $lessons = Lesson::all()->pluck('title', 'id');
-        $users = User::all()->pluck('name', 'id');
-        return view('questions/edit',['item' => $question, 'lessons' => $lessons, 'users' => $users]);
+        return view('questions/edit',['item' => $question, 'lessons' => $lessons]);
     }
 
     /**
@@ -51,22 +49,9 @@ class QuestionController extends Controller
         $question->answer = Input::get('answer');
         $question->title = Input::get('title');
         $question->lesson_id = Input::get('lesson_id');
-        $question->user_id = Input::get('user_id');
         $question->order = Input::get('order');
         $question->save();
         return redirect()->action('QuestionController@index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $question = Question::find($id);
-        return view('questions/show', ['item' => $question]);
     }
 
     /**
@@ -79,8 +64,7 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
         $lessons = Lesson::all()->pluck('title', 'id');
-        $users = User::all()->pluck('name', 'id');
-        return view('questions/edit', ['item' => $question, 'lessons' => $lessons, 'users' => $users]);
+        return view('questions/edit', ['item' => $question, 'lessons' => $lessons]);
     }
 
     /**

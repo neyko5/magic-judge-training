@@ -8,8 +8,10 @@
 require('./bootstrap');
 
 $(document).ready(function() {
-    $(document).on("click", ".show-answer", function(){
-        $(this).parents(".answer").find(".well").show();
-        $(this).remove();
-    })
+    $("table").DataTable();
+    tinymce.init({
+        selector: 'textarea.editor',
+        plugins: ['paste', 'link'],
+        height: 400
+    });
 })

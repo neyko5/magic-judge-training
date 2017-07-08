@@ -3,9 +3,7 @@
 @section('content')
     <section id="content-region-3" class="padding-40 page-tree-bg">
         <div class="container">
-            <h3 class="page-tree-text">
-                {{$item->title}}
-            </h3>
+            <h3 class="page-tree-text">Information page</h3>
         </div>
     </section>
     <div class="space-70"></div>
@@ -14,10 +12,10 @@
             <div class="col-md-8">
                 <div class="blog-post-section">
                     <div class="blog-post-header">
-                        <h3><a href="" class="hover-color">All you need to know</a></h3>
+                        <h3><a href="" class="hover-color">{{$item->title}}</a></h3>
                     </div>
                     <div class="blog-post-info">
-                        <span><a href="#" class="hover-color">by author</a> | on 27 may 2014 | <a href="#" class="hover-color">Sports</a></span>
+                        <span><a href="#" class="hover-color">by {{$item->user->name}}</a> | last edit on {{$item->updated_at->format('l jS \\of F Y')}}</span>
                     </div>
                     <div class="blog-post-detail">
                         {!! $item->description !!}

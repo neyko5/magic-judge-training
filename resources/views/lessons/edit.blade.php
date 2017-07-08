@@ -22,26 +22,18 @@
                 </div>
                 <div class="form-group">
                     <label for="title">Lesson content</label>
-                    <textarea name="description" placeholder="Lesson content" class="form-control auto-height">{{$item->description}}</textarea>
+                    <textarea name="description" placeholder="Lesson content" class="form-control auto-height editor">{{$item->description}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="title">Order</label>
                     <input type="number" name="order" class="form-control" placeholder="Order" value="{{$item->order}}" />
                 </div>
+                <div class="form-group">
+                    <label for="user_id">Lesson creator</label>
+                    {{ Form::select('user_id', $users, Input::old('user_id'), ["class" => "form-control"]) }}
+                </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             {{Form::close()}}
         </div>
     </div>
-@endsection
-
-@section('javascript')
-<script>
-    var editor = new MediumEditor('textarea', {
-        anchor: {
-            linkValidation: true,
-            targetCheckbox: true,
-            targetCheckboxText: 'Open in new window'
-        }
-    });
-</script>   
 @endsection

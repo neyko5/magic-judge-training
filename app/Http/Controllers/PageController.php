@@ -4,6 +4,7 @@ namespace MagicJudgeTraining\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MagicJudgeTraining\Page;
+use MagicJudgeTraining\User;
 use Input;
 
 class PageController extends Controller
@@ -27,7 +28,8 @@ class PageController extends Controller
     public function create()
     {
         $page = new Page;
-        return view('pages/edit',['item' => $page]);
+        $users = User::all()->pluck('name', 'id');
+        return view('pages/edit',['item' => $page, 'users' => $users]);
     }
 
     /**
@@ -42,6 +44,7 @@ class PageController extends Controller
         $page->description = Input::get('description');
         $page->title = Input::get('title');
         $page->order = Input::get('order');
+        $page->user_id = Input::get('user_id');
         $page->save();
         return redirect()->action('PageController@show', ['id' => $page->id]);
     }
@@ -74,7 +77,8 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        return view('pages/edit', ['item' => $page]);
+        $users = User::all()->pluck('name', 'id');
+        return view('pages/edit', ['item' => $page, 'users' => $users]);
     }
 
     /**
@@ -90,6 +94,7 @@ class PageController extends Controller
         $page->description = Input::get('description');
         $page->title = Input::get('title');
         $page->order = Input::get('order');
+        $page->user_id = Input::get('user_id');
         $page->save();
         return redirect()->action('PageController@show', ['id' => $page->id]);
     }

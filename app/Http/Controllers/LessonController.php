@@ -4,6 +4,7 @@ namespace MagicJudgeTraining\Http\Controllers;
 
 use Illuminate\Http\Request;
 use MagicJudgeTraining\Lesson;
+use MagicJudgeTraining\User;
 use Input;
 
 class LessonController extends Controller
@@ -27,7 +28,8 @@ class LessonController extends Controller
     public function create()
     {
         $lesson = new Lesson;
-        return view('lessons/edit',['item' => $lesson]);
+        $users = User::all()->pluck('name', 'id');
+        return view('lessons/edit',['item' => $lesson, 'users' => $users]);
     }
 
     /**
@@ -42,6 +44,7 @@ class LessonController extends Controller
         $lesson->description = Input::get('description');
         $lesson->title = Input::get('title');
         $lesson->order = Input::get('order');
+        $page->user_id = Input::get('user_id');
         $lesson->save();
         return redirect()->action('LessonController@show', ['id' => $lesson->id]);
     }
@@ -68,7 +71,8 @@ class LessonController extends Controller
     public function edit($id)
     {
         $lesson = Lesson::find($id);
-        return view('lessons/edit', ['item' => $lesson]);
+        $users = User::all()->pluck('name', 'id');
+        return view('lessons/edit', ['item' => $lesson, 'users' => $users]);
     }
 
     /**
@@ -84,6 +88,7 @@ class LessonController extends Controller
         $lesson->description = Input::get('description');
         $lesson->title = Input::get('title');
         $lesson->order = Input::get('order');
+        $lesson->user_id = Input::get('user_id');
         $lesson->save();
         return redirect()->action('LessonController@show', ['id' => $lesson->id]);
     }

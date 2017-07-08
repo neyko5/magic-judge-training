@@ -29,7 +29,7 @@
                 <tbody>
                     @foreach ($list as $question)
                     <tr>
-                        <td>{{link_to_route('questions.show', $question->title, [$question->id])}}</td>
+                        <td>{{$question->title}}</td>
                         <td>{{$question->lesson->title}}</td>
                         @if(Auth::check())
                         <td>{{$question->order}}</td>

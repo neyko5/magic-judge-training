@@ -24,7 +24,7 @@
             <li class="dropdown nav-item">
                 @if (Auth::check())
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" >{{Auth::user()->name}}</a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" style="right: 0px;">
                     <li>
                         <form role="form" method="POST" class="logout-form" action="{{ route('logout') }}">
                             {{ csrf_field() }}
@@ -33,7 +33,7 @@
                     </li>
                     <li class="dropdown-submenu">
                         <a href="#" tabindex="-1" class="dropdown-item" data-toggle="dropdown">Admin</a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="left: auto!important; right: 100%;">
                             <li>{{link_to_route('lessons.index', "Lessons", [], ['class' => 'dropdown-item'])}}</li>
                             <li>{{link_to_route('questions.index', "Questions", [], ['class' => 'dropdown-item'])}}</li>
                             <li>{{link_to_route('pages.index', "Pages", [], ['class' => 'dropdown-item'])}}</li>
@@ -42,7 +42,7 @@
                 </ul>
                 @else
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Log in</a>
-                    <div class="dropdown-menu" style="width: 300px; padding: 15px;">
+                    <div class="dropdown-menu" style="width: 300px; padding: 15px; right: 0px;">
                         <form role="form" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -76,9 +76,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
                             </div>
                         </form>
                     </div>
