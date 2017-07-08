@@ -44,7 +44,7 @@ class LessonController extends Controller
         $lesson->description = Input::get('description');
         $lesson->title = Input::get('title');
         $lesson->order = Input::get('order');
-        $page->user_id = Input::get('user_id');
+        $lesson->user_id = Input::get('user_id');
         $lesson->save();
         return redirect()->action('LessonController@show', ['id' => $lesson->id]);
     }
