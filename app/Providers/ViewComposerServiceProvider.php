@@ -17,8 +17,8 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         view()->composer('partials.nav', function($view)
         {
-            $view->with('pages', Page::where("title", "<>", "Index")->orderBy("order")->get());
-            $view->with('lessons', Lesson::orderBy("order")->get());
+            $view->with('pages', Page::where("title", "<>", "Index")->where('published', '1')->orderBy("order")->get());
+            $view->with('lessons', Lesson::where('published', '1')->orderBy("order")->get());
         });
     }
 

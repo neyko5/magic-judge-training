@@ -45,6 +45,7 @@ class LessonController extends Controller
         $lesson->title = Input::get('title');
         $lesson->order = Input::get('order');
         $lesson->user_id = Input::get('user_id');
+        $lesson->published = Input::get('published');
         $lesson->save();
         return redirect()->action('LessonController@show', ['id' => $lesson->id]);
     }
@@ -58,7 +59,7 @@ class LessonController extends Controller
     public function show($id)
     {
         $lesson = Lesson::find($id);
-        $lessons = Lesson::where('id', '<>', $id)->orderBy('order')->get();
+        $lessons = Lesson::where('id', '<>', $id)->where('published', '1')->orderBy('order')->get();
         return view('lessons/show', ['item' => $lesson, 'lessons' => $lessons]);
     }
 
@@ -89,6 +90,7 @@ class LessonController extends Controller
         $lesson->title = Input::get('title');
         $lesson->order = Input::get('order');
         $lesson->user_id = Input::get('user_id');
+        $lesson->published = Input::get('published');
         $lesson->save();
         return redirect()->action('LessonController@show', ['id' => $lesson->id]);
     }

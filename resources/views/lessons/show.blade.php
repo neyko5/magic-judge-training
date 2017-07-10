@@ -39,7 +39,7 @@
                     <h4>Other lessons</h4>
                     <ul class="cat-list">
                         @foreach($lessons as $otherLesson)
-                        <li class="nav-item">{{link_to_route('pages.show', $otherLesson->title, [$otherLesson->id], ['class' => 'hover-color'])}}</li>
+                        <li class="nav-item">{{link_to_route('lessons.show', $otherLesson->title, [$otherLesson->id], ['class' => 'hover-color'])}}</li>
                         @endforeach
                     </ul>
                 </div>

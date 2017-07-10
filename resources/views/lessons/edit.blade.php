@@ -32,6 +32,10 @@
                     <label for="user_id">Lesson creator</label>
                     {{ Form::select('user_id', $users, Input::old('user_id'), ["class" => "form-control"]) }}
                 </div>
+                <div class="form-group">
+                    <label for="published">Published</label>
+                    {{ Form::checkbox('published', Input::old('published'), ["class" => "form-control"]) }}
+                </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             {{Form::close()}}
         </div>

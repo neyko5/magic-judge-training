@@ -45,6 +45,7 @@ class PageController extends Controller
         $page->title = Input::get('title');
         $page->order = Input::get('order');
         $page->user_id = Input::get('user_id');
+        $page->published = Input::get('published');
         $page->save();
         return redirect()->action('PageController@show', ['id' => $page->id]);
     }
@@ -58,7 +59,7 @@ class PageController extends Controller
     public function show($id)
     {
         $page = Page::find($id);
-        $pages = Page::where('id', '<>', $id)->where('title', '<>', 'Index')->get();
+        $pages = Page::where('id', '<>', $id)->where('title', '<>', 'Index')->where('published', '1')->get();
         return view('pages/show', ['item' => $page, 'pages' => $pages]);
     }
 
@@ -95,6 +96,7 @@ class PageController extends Controller
         $page->title = Input::get('title');
         $page->order = Input::get('order');
         $page->user_id = Input::get('user_id');
+        $page->published = Input::get('published');
         $page->save();
         return redirect()->action('PageController@show', ['id' => $page->id]);
     }
