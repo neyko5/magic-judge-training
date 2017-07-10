@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="published">Published</label>
-                    {{ Form::checkbox('published', Input::old('published'), ["class" => "form-control"]) }}
+                    {{ Form::checkbox('published', '1', Input::old('published'), ["class" => "form-control"]) }}
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             {{Form::close()}}
