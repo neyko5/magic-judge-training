@@ -19,10 +19,9 @@
                 <thead>
                     <tr>
                         <th>Title</td>
-                        <th>Question creator</td>
-                        <th>Difficulty</td>
-                        <th>Tags</td>
+                        <th>Lesson</td>
                         @if(Auth::check())
+                        <th>Order</td>
                         <th>Options</td>
                         @endif
                     </tr>
@@ -30,11 +29,10 @@
                 <tbody>
                     @foreach ($list as $question)
                     <tr>
-                        <td>{{link_to_route('questions.show', $question->title, [$question->id])}}</td>
-                        <td>{{$question->user->name}}</td>
-                        <td>{{$question->difficulty}}</td>
-                        <td>{{$question->tagsString()}}</td>
+                        <td>{{$question->title}}</td>
+                        <td>{{$question->lesson->title}}</td>
                         @if(Auth::check())
+                        <td>{{$question->order}}</td>
                         <td>
                             {{link_to_route('questions.edit', "Edit", [$question->id], ["class"=> "btn btn-primary"])}}
                             {{Form::model($question, ['route' => ['questions.destroy', $question->id], 'method' => 'DELETE'])}}

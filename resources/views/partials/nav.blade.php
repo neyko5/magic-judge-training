@@ -35,7 +35,9 @@
                         <a href="#" tabindex="-1" class="dropdown-item" data-toggle="dropdown">Admin</a>
                         <ul class="dropdown-menu" style="left: auto!important; right: 100%;">
                             <li>{{link_to_route('lessons.index', "Lessons", [], ['class' => 'dropdown-item'])}}</li>
+                            <li>{{link_to_route('lesson_questions.index', "Lesson questions", [], ['class' => 'dropdown-item'])}}</li>
                             <li>{{link_to_route('questions.index', "Questions", [], ['class' => 'dropdown-item'])}}</li>
+                            <li>{{link_to_route('tags.index', "Tags", [], ['class' => 'dropdown-item'])}}</li>
                             <li>{{link_to_route('pages.index', "Pages", [], ['class' => 'dropdown-item'])}}</li>
                         </ul>
                     </li>

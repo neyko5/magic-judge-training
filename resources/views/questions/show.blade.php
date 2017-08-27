@@ -3,7 +3,7 @@
 @section('content')
     <section id="content-region-3" class="padding-40 page-tree-bg">
         <div class="container">
-            <h3 class="page-tree-text">Lesson</h3>
+            <h3 class="page-tree-text">Question</h3>
         </div>
     </section>
     <div class="space-70"></div>
@@ -20,26 +20,20 @@
                     <div class="blog-post-detail">
                         {!! $item->description !!}
                         <hr>
-                        @foreach ($item->questions as $question)
                         <div class="question price-faq-box" >
-                            <h3>{{$question->order}}. {{$question->title}}</h3>
-                            <p>{!! $question->description !!}</p>
-                            @if(Auth::check())
                             <div class="answer">
-                                <div class="well"><em>{!! $question->answer !!}</em></div>
+                                <div class="well"><em>{!! $item->answer !!}</em></div>
                             </div>
-                            @endif
                         </div>
-                        @endforeach
                     </div>
                 </div><!--blog post section end-->
             </div><!--blog content-->
             <div class="col-md-4">
                 <div class="sidebar-box">
-                    <h4>Other lessons</h4>
+                    <h4>Other questions</h4>
                     <ul class="cat-list">
-                        @foreach($lessons as $otherLesson)
-                        <li class="nav-item">{{link_to_route('lessons.show', $otherLesson->title, [$otherLesson->id], ['class' => 'hover-color'])}}</li>
+                        @foreach($otherQuestions as $otherQuestion)
+                        <li class="nav-item">{{link_to_route('questions.show', $otherQuestion->title, [$otherQuestion->id], ['class' => 'hover-color'])}}</li>
                         @endforeach
                     </ul>
                 </div>

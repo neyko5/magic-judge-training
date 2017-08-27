@@ -4,14 +4,14 @@
     <section id="content-region-3" class="padding-40 page-tree-bg">
         <div class="container">
             <h3 class="page-tree-text">
-                Questions index
+                Tags index
             </h3>
         </div>
     </section><!--page-tree end here-->
     <div class="space-70"></div>
     <div class="container">
         @if(Auth::check())
-        {{link_to_route('questions.create', "Create new question", [], ['class'=> 'button btn theme-btn-color'])}}
+        {{link_to_route('tags.create', "Create new tag", [], ['class'=> 'button btn theme-btn-color'])}}
         @endif
         <div class="space-70"></div>
         <div class="table-responsive">
@@ -19,25 +19,19 @@
                 <thead>
                     <tr>
                         <th>Title</td>
-                        <th>Question creator</td>
-                        <th>Difficulty</td>
-                        <th>Tags</td>
                         @if(Auth::check())
                         <th>Options</td>
                         @endif
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($list as $question)
+                    @foreach ($list as $tag)
                     <tr>
-                        <td>{{link_to_route('questions.show', $question->title, [$question->id])}}</td>
-                        <td>{{$question->user->name}}</td>
-                        <td>{{$question->difficulty}}</td>
-                        <td>{{$question->tagsString()}}</td>
+                        <td>{{$tag->title}}</td>
                         @if(Auth::check())
                         <td>
-                            {{link_to_route('questions.edit', "Edit", [$question->id], ["class"=> "btn btn-primary"])}}
-                            {{Form::model($question, ['route' => ['questions.destroy', $question->id], 'method' => 'DELETE'])}}
+                            {{link_to_route('tags.edit', "Edit", [$tag->id], ["class"=> "btn btn-primary"])}}
+                            {{Form::model($tag, ['route' => ['tags.destroy', $tag->id], 'method' => 'DELETE'])}}
                             {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                             {{Form::close()}}
                         </td>

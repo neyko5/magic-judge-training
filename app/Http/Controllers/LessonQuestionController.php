@@ -3,9 +3,8 @@
 namespace MagicJudgeTraining\Http\Controllers;
 
 use Illuminate\Http\Request;
-use MagicJudgeTraining\Question;
-use MagicJudgeTraining\User;
-use MagicJudgeTraining\Tag;
+use MagicJudgeTraining\LessonQuestion;
+use MagicJudgeTraining\Lesson;
 use Input;
 
 class QuestionController extends Controller
@@ -21,7 +20,7 @@ class QuestionController extends Controller
      */
     public function index()
     {   
-        $question = Question::all();
+        $question = LessonQuestion::all();
         return view('questions/index', ['list' => $question]);
     }
 
@@ -32,17 +31,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $question = new Question;
-        $users = User::all()->pluck('name', 'id');
-        $tags = Tag::all()->pluck('title', 'id');
-        return view('questions/edit',['item' => $question, 'users' => $users, 'tags' => $tags]);
-    }
-
-    public function show($id)
-    {
-        $question = Question::find($id);
-        $otherQuestions = Question::where('id', '<>', $id)->get();
-        return view('questions/show', ['item' => $question, 'otherQuestions' => $otherQuestions]);
+        $question = new LessonQuestion;
+        $lessons = Lesson::all()->pluck('title', 'id');
+        return view('lesson_questions/edit',['item' => $question, 'lessons' => $lessons]);
     }
 
     /**
@@ -53,20 +44,14 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $question = new Question;
+        $question = new LessonQuestion;
         $question->description = Input::get('description');
         $question->answer = Input::get('answer');
         $question->title = Input::get('title');
-        $question->difficulty = Input::get('difficulty');
-        $question->user_id = Input::get('user_id');
-        
+        $question->lesson_id = Input::get('lesson_id');
+        $question->order = Input::get('order');
         $question->save();
-        if (Input::get('tags')) {
-            $question->tags()->sync(array_values(Input::get('tags')));
-        } else  {
-            $question->tags()->detach();
-        }
-        return redirect()->action('QuestionController@index');
+        return redirect()->action('LessonQuestionController@index');
     }
 
     /**
@@ -77,10 +62,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::find($id);
-        $users = User::all()->pluck('name', 'id');
-        $tags = Tag::all()->pluck('title', 'id');
-        return view('questions/edit', ['item' => $question, 'users' => $users, 'tags' => $tags]);
+        $question = LessonQuestion::find($id);
+        $lessons = Lesson::all()->pluck('title', 'id');
+        return view('lesson_questions/edit', ['item' => $question, 'lessons' => $lessons]);
     }
 
     /**
@@ -92,20 +76,14 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $question = Question::findOrFail($id);
+        $question = LessonQuestion::findOrFail($id);
         $question->description = Input::get('description');
         $question->answer = Input::get('answer');
         $question->title = Input::get('title');
-        $question->difficulty = Input::get('difficulty');
-        $question->user_id = Input::get('user_id');
-        if (Input::get('tags')) {
-            $question->tags()->sync(array_values(Input::get('tags')));
-        } else  {
-            $question->tags()->detach();
-        }
-
+        $question->lesson_id = Input::get('lesson_id');
+        $question->order = Input::get('order');
         $question->save();
-        return redirect()->action('QuestionController@index');
+        return redirect()->action('LessonQuestionController@index');
     }
 
     /**
@@ -116,7 +94,7 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        $question = Question::destroy($id);
-        return redirect()->action('QuestionController@index', []);
+        $question = LessonQuestion::destroy($id);
+        return redirect()->action('LessonQuestionController@index', []);
     }
 }
