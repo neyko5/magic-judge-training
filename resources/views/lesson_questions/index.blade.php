@@ -34,7 +34,7 @@
                         @if(Auth::check())
                         <td>{{$question->order}}</td>
                         <td>
-                            {{link_to_route('questions.edit', "Edit", [$question->id], ["class"=> "btn btn-primary"])}}
+                            {{link_to_route('lesson_questions.edit', "Edit", [$question->id], ["class"=> "btn btn-primary"])}}
                             {{Form::model($question, ['route' => ['lesson_questions.destroy', $question->id], 'method' => 'DELETE'])}}
                             {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                             {{Form::close()}}
