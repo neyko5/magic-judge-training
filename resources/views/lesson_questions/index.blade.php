@@ -11,7 +11,7 @@
     <div class="space-70"></div>
     <div class="container">
         @if(Auth::check())
-        {{link_to_route('questions.create', "Create new question", [], ['class'=> 'button btn theme-btn-color'])}}
+        {{link_to_route('lesson_questions.create', "Create new question", [], ['class'=> 'button btn theme-btn-color'])}}
         @endif
         <div class="space-70"></div>
         <div class="table-responsive">
@@ -35,7 +35,7 @@
                         <td>{{$question->order}}</td>
                         <td>
                             {{link_to_route('questions.edit', "Edit", [$question->id], ["class"=> "btn btn-primary"])}}
-                            {{Form::model($question, ['route' => ['questions.destroy', $question->id], 'method' => 'DELETE'])}}
+                            {{Form::model($question, ['route' => ['lesson_questions.destroy', $question->id], 'method' => 'DELETE'])}}
                             {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                             {{Form::close()}}
                         </td>
