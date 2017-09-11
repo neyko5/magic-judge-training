@@ -18,5 +18,3 @@ Route::resource('questions', 'QuestionController');
 Route::resource('pages', 'PageController');
 Route::resource('tags', 'TagController');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

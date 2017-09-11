@@ -5,6 +5,7 @@ namespace MagicJudgeTraining\Http\Controllers;
 use Illuminate\Http\Request;
 use MagicJudgeTraining\Page;
 use MagicJudgeTraining\User;
+use MagicJudgeTraining\Lesson;
 use Input;
 
 class PageController extends Controller
@@ -65,8 +66,9 @@ class PageController extends Controller
 
     public function home()
     {
+        $lessons = Lesson::orderBy("order")->get();
         $page = Page::where("title", "Index")->first();
-        return view('index', ['page' => $page]);
+        return view('index', ['page' => $page, 'lessons' => $lessons]);
     }
 
     /**

@@ -7,7 +7,7 @@ use MagicJudgeTraining\LessonQuestion;
 use MagicJudgeTraining\Lesson;
 use Input;
 
-class QuestionController extends Controller
+class LessonQuestionController extends Controller
 {
     public function __construct()
     {
