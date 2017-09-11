@@ -15,7 +15,7 @@
     <div class="space-40"></div>
     <div class="container">
         <div class="comment-form-wrapper">
-            {{Form::model($item, ['route' => [$item->id ? 'questions.update' : 'questions.store' , $item->id], 'method' => $item->id ? 'PUT' : 'POST'])}}
+            {{Form::model($item, ['route' => [$item->id ? 'lesson_questions.update' : 'lesson_questions.store' , $item->id], 'method' => $item->id ? 'PUT' : 'POST'])}}
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" name="title" class="form-control" placeholder="Title" value="{{$item->title}}" />
