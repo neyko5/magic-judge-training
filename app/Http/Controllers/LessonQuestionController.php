@@ -21,7 +21,7 @@ class LessonQuestionController extends Controller
     public function index()
     {   
         $question = LessonQuestion::all();
-        return view('questions/index', ['list' => $question]);
+        return view('lesson_questions/index', ['list' => $question]);
     }
 
     /**
